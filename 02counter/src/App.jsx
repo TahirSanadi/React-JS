@@ -4,13 +4,32 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  let [counter,setCounter]=useState(15)
+  let [counter,setCounter]=useState(0)
 
   //let counter=5
   const addValue =()=>{
     //counter = counter+1
-    setCounter(counter+1)
+    if(counter<20){
+      setCounter(counter+1)
     console.log("clicked",counter);
+    }
+    else{
+      alert('you cannot go beyond 20')
+    }
+    
+  }
+
+  const removeValue=()=>{
+    if(counter==0){
+      alert('you cannot go in negetive')
+      console.log("clicked",counter);
+    }
+    else{
+      setCounter(counter-1)
+    }
+  }
+  const setZero=()=>{
+    setCounter(counter=0)
   }
   return (
     <>
@@ -21,7 +40,12 @@ function App() {
      onClick={addValue}>addValue{counter}</button>
      <br/>
      <br/>
-     <button>removeValue{counter}</button> 
+     <button
+     onClick={removeValue}>removeValue{counter}</button>
+     <br/>
+     <br/>
+     <button
+     onClick={setZero}>setZero</button> 
 
     </>
   )
