@@ -9,6 +9,13 @@ function App() {
   //useRef hook
   const passwordRef=useRef(null)
 
+  //State for button text & style
+  const [buttonText, setButtonText]=useState('Copy')
+  const [buttonStyle, setButtonStyle]=useState({
+    backgroundColor:'blue',
+    color:'white'
+  })
+
   const passwordGenerator = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -32,7 +39,26 @@ function App() {
   const copyPasswordToClipboard = useCallback(()=>{
     passwordRef.current?.select()
     passwordRef.current.setSelectionRange(0,100)
-    window.navigator.clipboard.writeText(password)
+    navigator.clipboard.writeText(password)
+
+    //change button text and style
+    setButtonText('Copied!')
+    setButtonStyle({
+      backgroundColor:'White',
+      color:'black',
+      border:'1px solid blue'
+    })
+
+    //timeout to reset button to defualt
+    setTimeout(() => {
+      setButtonText('Copy')
+      setButtonStyle({
+        backgroundColor:'blue',
+        color:'white',
+        border:'none'
+      })
+
+    }, 2000);
   },[password])
 
   useEffect(()=>{
@@ -56,9 +82,9 @@ function App() {
             readOnly
             ref={passwordRef}
           ></input>
-          <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
-          onClick={copyPasswordToClipboard}>
-            Copy
+          <button className="w-20 outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
+          onClick={copyPasswordToClipboard} style={buttonStyle}>
+            {buttonText}
           </button>
         </div>
         <div className="flex text-sm gap-x-2">
