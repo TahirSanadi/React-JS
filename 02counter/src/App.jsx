@@ -11,7 +11,13 @@ function App() {
     //counter = counter+1
     if(counter<20){
       setCounter(counter+1)
-    console.log("clicked",counter);
+
+      //interview prespective 
+      // setCounter((counter)=>counter+1)
+      // setCounter((counter)=>counter+1)
+      // setCounter((counter)=>counter+1)
+      // setCounter((counter)=>counter+1)
+      console.log("clicked",counter);
     }
     else{
       alert('you cannot go beyond 20')
